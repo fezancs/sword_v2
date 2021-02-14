@@ -1,21 +1,21 @@
 apiVersion : apps/v1
 kind: Deployment
 metadata:
-  name: frontend-sword-v2
+  name: frontend-sword
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: frontend-sword-v2
+      app: frontend-sword
   template:
     metadata:
       labels:
-        app: frontend-sword-v2
+        app: frontend-sword
     spec:
       containers:
       - image: gcr.io/fillcraft-swards/frontend_swards_img:latest
         imagePullPolicy: Always
-        name: frontend-sword-v2
+        name: frontend-sword
         ports:
         - containerPort: 4200
           protocol: TCP
@@ -24,7 +24,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-    name: frontend-sword-v2
+    name: frontend-sword
 spec:
     type: LoadBalancer
     ports:
@@ -32,6 +32,5 @@ spec:
       targetPort: 4200
       protocol: TCP
     selector:
-        app: frontend-sword-v2
+        app: frontend-sword
 ---
-
