@@ -1,0 +1,242 @@
+<div class="container-fluid" style="padding: 3vw 0vw;">
+    <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-9">
+
+           <div class="row">
+              <div class="col-12 d-flex">
+                
+                <!--left div-->
+                 <div class="col-8" style="padding-right: 1.5vw;">
+                     
+                    <!--billinginfo-->
+                    <div class="d-flex flex-column">
+                        <div class="row d-flex flex-column">
+                            <h1 class="yourorders"> Billing Info</h1>
+                            <div class="line">
+                              <span class="color-1"></span>
+                              <span class="color-2"></span>
+                            </div>
+                        </div>
+                        <form [formGroup]="billingForm" >
+                            <div class="col-12 d-flex flex-column">
+                                
+                                <div class="d-flex">
+                                    <div class="form-group col-md-6 col-lg-6 paddingclass">
+                                        <label class="labelclass" for="firstname">FIRST NAME <small class="red">*</small></label>
+                                        <input formControlName="firstname"  type="text" class="form-control inputclass" [ngClass]="{ 'is-invalid': submitted && f.firstname.errors }">
+                                        <div *ngIf="submitted && f.firstname.errors" class="invalid-feedback">
+                                            <div class="error" *ngIf="f.firstname.errors.required">First Name is required</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6 col-lg-6 paddingclass">
+                                        <label class="labelclass" for="lastname">LAST NAME <small class="red">*</small></label>
+                                        <input formControlName="lastname"  type="text" class="form-control inputclass" [ngClass]="{ 'is-invalid': submitted && f.lastname.errors }"> 
+                                        <div *ngIf="submitted && f.lastname.errors" class="invalid-feedback">
+                                            <div class="error" *ngIf="f.lastname.errors.required">LAST Name is required</div>
+                                        </div>
+                                    </div>
+                                </div>    
+    
+                                <div class="form-group col-md-12 col-lg-12 paddingclass">
+                                    <label class="labelclass" for="company">COMPANY NAME</label>
+                                    <input formControlName="company" type="text" class="form-control inputclass" >
+                                </div>
+                                
+                                <div class="d-flex">
+                                    <div class="form-group col-md-6 col-lg-6 paddingclass">
+                                        <label class="labelclass" for="email">EMAIL ADDRESS <small class="red">*</small> </label>
+                                        <input formControlName="email" type="text" class="form-control inputclass" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                                        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                            <div class="error" *ngIf="f.email.errors.required">Email is required</div>
+                                            <div class="error" *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6 col-lg-6 paddingclass">
+                                        <label class="labelclass" for="telephone">PHONE NUMBER <small class="red">*</small></label>
+                                        <input formControlName="telephone" type="text" class="form-control inputclass" [ngClass]="{ 'is-invalid': submitted && f.telephone.errors }">
+                                        <div *ngIf="submitted && f.telephone.errors" class="invalid-feedback">
+                                            <div class="error" *ngIf="f.telephone.errors.required">LAST Name is required</div>
+                                        </div>
+                                    </div>  
+                                </div>
+                                <div class="form-group col-md-12 col-lg-12 paddingclass">
+                                    <label class="labelclass" for="country">COUNTRY <small class="red">*</small> </label>
+                                    <input type="text" formControlName="country" class="form-control inputclass" placeholder="United Kingdom" [ngClass]="{ 'is-invalid': submitted && f.country.errors }">
+                                    <div *ngIf="submitted && f.country.errors" class="invalid-feedback">
+                                        <div class="error" *ngIf="f.country.errors.required">Country is required</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-12 col-lg-12 paddingclass">
+                                    <label class="labelclass" for="address appartment">ADDRESS <small class="red">*</small></label>
+                                    <input  type="text" formControlName="address" class="form-control inputclass" placeholder="Street Address" [ngClass]="{ 'is-invalid': submitted && f.address.errors }">
+                                    <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+                                        <div class="error" *ngIf="f.address.errors.required">Address is required</div>
+                                    </div>
+    
+                                    <input  type="text" formControlName="appartment" class="form-control inputclass" placeholder="Appartment">
+                                </div>
+    
+                            </div>
+    
+                        </form>
+           
+                    </div>
+                    <!--billinginfo ended-->
+                    <!--shipping info-->
+                   
+                    <div class="d-flex flex-column" style="margin-top: 2vw;">
+                        <div class="row d-flex flex-column">
+                            <h1 class="yourorders"> shipping Info</h1>
+                            <div class="line">
+                                <span class="color-1"></span>
+                                <span class="color-2"></span>
+                            </div>
+                            <div class="d-flex ">
+                                <div class="d-flex align-items-center">
+                                    <input (click)="layout = 'same'" style="margin-left:1vw;margin-right: .2vw;" type="radio" id="radio1" name="name2" value="same"  checked />
+                                    <label class="label" for="radio1">Ship Items to my billing address</label> 
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <input (click)="layout = 'diff'" style="margin-left:4vw ;margin-right: .2vw;" type="radio" id="radio1" name="name2" value="dif" />
+                                    <label class="label" for="radio1" >Ship Items to a different address</label>
+                                </div>
+
+                            </div>
+                            <form [formGroup]="shippingForm" *ngIf="layout == 'diff'">
+                                <div class="col-12 d-flex flex-column">
+                                    
+                                    <div class="d-flex" >
+                                        <div class="form-group col-md-6 col-lg-6 paddingclass">
+                                            <label class="labelclass" for="firstname">FIRST NAME <small class="red">*</small></label>
+                                            <input formControlName="firstname"  type="text" class="form-control inputclass" [ngClass]="{ 'is-invalid': submitted && f.firstname.errors }">
+                                            <div *ngIf="submitted && f.firstname.errors" class="invalid-feedback">
+                                                <div class="error" *ngIf="f.firstname.errors.required">First Name is required</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6 col-lg-6 paddingclass">
+                                            <label class="labelclass" for="lastname">LAST NAME <small class="red">*</small></label>
+                                            <input formControlName="lastname"  type="text" class="form-control inputclass" [ngClass]="{ 'is-invalid': submitted && f.lastname.errors }"> 
+                                            <div *ngIf="submitted && f.lastname.errors" class="invalid-feedback">
+                                                <div class="error" *ngIf="f.lastname.errors.required">LAST Name is required</div>
+                                            </div>
+                                        </div>
+                                    </div>    
+        
+                                    <div class="form-group col-md-12 col-lg-12 paddingclass">
+                                        <label class="labelclass" for="company">COMPANY NAME</label>
+                                        <input formControlName="company" type="text" class="form-control inputclass" >
+                                    </div>
+                                    
+                                    <div class="d-flex">
+                                        <div class="form-group col-md-6 col-lg-6 paddingclass">
+                                            <label class="labelclass" for="email">EMAIL ADDRESS <small class="red">*</small> </label>
+                                            <input formControlName="email" type="text" class="form-control inputclass" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                                            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                                <div class="error" *ngIf="f.email.errors.required">Email is required</div>
+                                                <div class="error" *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6 col-lg-6 paddingclass">
+                                            <label class="labelclass" for="telephone">PHONE NUMBER <small class="red">*</small></label>
+                                            <input formControlName="telephone" type="text" class="form-control inputclass" [ngClass]="{ 'is-invalid': submitted && f.telephone.errors }">
+                                            <div *ngIf="submitted && f.telephone.errors" class="invalid-feedback">
+                                                <div class="error" *ngIf="f.telephone.errors.required">LAST Name is required</div>
+                                            </div>
+                                        </div>  
+                                    </div>
+                                    <div class="form-group col-md-12 col-lg-12 paddingclass">
+                                        <label class="labelclass" for="country">COUNTRY <small class="red">*</small> </label>
+                                        <input type="text" formControlName="country" class="form-control inputclass" placeholder="United Kingdom" [ngClass]="{ 'is-invalid': submitted && f.country.errors }">
+                                        <div *ngIf="submitted && f.country.errors" class="invalid-feedback">
+                                            <div class="error" *ngIf="f.country.errors.required">Country is required</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12 col-lg-12 paddingclass">
+                                        <label class="labelclass" for="address appartment">ADDRESS <small class="red">*</small></label>
+                                        <input  type="text" formControlName="address" class="form-control inputclass" placeholder="Street Address" [ngClass]="{ 'is-invalid': submitted && f.address.errors }">
+                                        <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+                                            <div class="error" *ngIf="f.address.errors.required">Address is required</div>
+                                        </div>
+        
+                                        <input  type="text" formControlName="appartment" class="form-control inputclass" placeholder="Appartment">
+                                    </div>
+        
+                                </div>
+        
+                            </form>
+                        </div>
+                    </div>    
+                    <!--shipping info ended-->
+                    <!--payment-->
+                    <div class="d-flex flex-column" style="margin-top: 2vw;">
+                        <div class="row d-flex flex-column">
+                            <h1 class="yourorders"> Payment</h1>
+                            <div class="line">
+                                <span class="color-1"></span>
+                                <span class="color-2"></span>
+                            </div>
+                        </div> 
+                        <div class="col-5" style="margin-left: 1vw;">
+                           <div id="mypaypalbuttons" type="submit"  ></div> 
+                            <button id="mypaypalbuttons" type="submit" [disabled]="billingForm.invalid" ></button>
+                        </div>   
+                    </div>
+                    <!--payment end-->
+                    <!-- <div class="col-12 d-flex justify-content-end">
+                         <button class="orderbutton" (click)="placeorder()">ORDER</button>
+                    </div> -->
+                   </div>
+                 <!--left div ended-->
+                 <!--right div-->
+                 <div class="col-4">
+               
+                    <div class="col-lg-12 col-12 d-flex flex-column justify-content-center">
+                        <h1 class="h1heading" >YOUR CART</h1>
+                        <div style="padding-top:1.5vw;">
+            
+                          <div class="d-flex flex-column" *ngFor="let u of cartitems" >
+                               <div class="d-flex justify-content-around">
+                                    <div class="col-2 col-md-4 col-lg-4">
+                                        <img src={{imageurl}}{{u.image}} alt="image" class="img-fluid" style="width: 100%;height: 7vw;border:1px solid  black;">
+                                    </div>
+                                    <div class="d-flex flex-column col-7 col-md-5 col-lg-5" >
+                                       <h5 class="ordername">{{u.name}}</h5>
+                                       <p class="orderprice">Qty:{{u.quantity}}</p>
+                                       <p class="orderprice">Price:{{u.price | currency}}</p>
+                                    </div>
+                                    <div class="col-1 col-md-1 col-lg-1">
+                                       <p class="orderprice">{{u.price | currency}}</p>
+                                    </div>
+                               </div>
+                               <div class="col-12">
+                                <hr>
+                               </div>
+                          </div>
+                          <div class="col-12 d-flex justify-content-end">
+                            <div class="d-flex flex-column">
+                                <h5 class="ordername" style="font-weight: bold;" >cart subtotal:{{totalbill | currency}}</h5>
+                                <h5 class="ordername" style="font-weight: bold;" >shipping:0</h5>
+                            </div>
+                          </div>
+                          <hr>
+                          <div class="col-12 d-flex justify-content-end align-items-center">
+                            <h5 class="ordername" style="font-weight: bold;" >ORDER TOTAL:</h5>
+                            <h6 class="total"> {{totalbill | currency }} </h6>
+                          </div>
+            
+                        </div>
+                        </div>
+
+
+                 </div>
+                 <!--right div ended-->
+
+              </div>
+           </div>
+
+        </div>
+    </div>    
+</div>
+
+
+

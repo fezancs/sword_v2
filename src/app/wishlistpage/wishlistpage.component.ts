@@ -1,0 +1,53 @@
+import { Component, OnInit } from '@angular/core';
+import { Store , select } from '@ngrx/store';
+import * as WishlistActions  from './../wishlist.actions';
+import * as fromWishlist from './../wishlist.selectors';
+import { WishlistItems } from './../wishlist';
+import { environment } from './../../environments/environment';
+@Component({
+  selector: 'app-wishlistpage',
+  templateUrl: './wishlistpage.component.html',
+  styleUrls: ['./wishlistpage.component.css']
+})
+export class WishlistpageComponent implements OnInit {
+
+  env=environment;
+  imageurl=this.env.imageUrl;
+  wishlistitems :WishlistItems[] = [];
+  totalbill :number;
+
+  constructor(private store : Store) {
+   }
+  
+   removeitem(name:string):void{
+    const user: string =  name ;
+    this.store.dispatch(new WishlistActions.RemoveWishlistItem(user));
+   }
+   
+   inc(user:WishlistItems):void{
+    this.store.dispatch(new WishlistActions.INCWishlistItem({"user1":user}));
+   }
+   
+   dec(user:WishlistItems):void{
+    this.store.dispatch(new WishlistActions.DECWishlistItem({"user1":user}));
+   }
+  ngOnInit(): void {
+
+    this.store.pipe(select(fromWishlist.getCartItems)).subscribe(
+      cartitems => {
+       this.wishlistitems = cartitems;
+       console.log(cartitems);
+     })
+
+
+  }
+
+
+  redirection(){
+    console.log("jjj");
+   // this.router.navigateByUrl('/placeorderpage');
+  }
+
+
+
+}
